@@ -51,7 +51,7 @@ function filterPosts() {
     
     if (subreddit && filters.includes(subreddit)) {
       // Find and remove the post element.
-      const postElement = link.closest('faceplate-tracker, shreddit-post, article');
+      const postElement = link.closest('faceplate-tracker, shreddit-post, article, search-telemetry-tracker');
       postElement?.remove();
     }
   });
