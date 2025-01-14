@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>iFilterReddit</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #1a1a1b;
+      background: #ffffff;
+    }
+    
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 16px 0;
+      color: #1a1a1b;
+    }
+    
+    #filter-form {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    
+    #subreddit-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+    
+    #subreddit-input:focus {
+      outline: none;
+      border-color: #0079d3;
+    }
+    
+    #add-btn {
+      padding: 8px 16px;
+      background: #0079d3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    #add-btn:hover {
+      background: #1484d8;
+    }
+    
+    #add-btn:active {
+      background: #0067b3;
+    }
+    
+    #filter-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .filter-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      margin: 8px 0;
+      background: #f6f7f8;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .filter-item span {
+      font-weight: 500;
+      color: #1a1a1b;
+    }
+    
+    .remove-btn {
+      background: #ff4444;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .remove-btn:hover {
+      background: #cc0000;
+      transform: translateY(-1px);
+    }
+    
+    .remove-btn:active {
+      background: #990000;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <details class="tutorial">
+    <summary>How to Use</summary>
+    <div class="tutorial-content">
+      <p>1. Enter a subreddit name (without "r/") in the input field</p>
+      <p>2. Click "Add" to add it to your filter list</p>
+      <p>3. The extension will automatically hide posts from these subreddits</p>
+      <p>4. Click "Remove" next to any subreddit to stop filtering it</p>
+    </div>
+  </details>
+
+  <div id="filter-form">
+    <input type="text" id="subreddit-input" placeholder="Enter subreddit name">
+    <button id="add-btn">Add</button>
+  </div>
+  <ul id="filter-list"></ul>
+
+  <style>
+    .tutorial {
+      margin-bottom: 16px;
+      padding: 12px;
+      background: #f6f7f8;
+      border-radius: 4px;
+    }
+    
+    .tutorial[open] summary {
+      margin-bottom: 8px;
+    }
+    
+    .tutorial summary {
+      font-weight: 500;
+      cursor: pointer;
+      color: #0079d3;
+    }
+    
+    .tutorial summary:hover {
+      text-decoration: underline;
+    }
+    
+    .tutorial-content {
+      font-size: 13px;
+      color: #1a1a1b;
+      line-height: 1.5;
+    }
+    
+    .tutorial-content p {
+      margin: 6px 0;
+    }
+  </style>
+
+  <script src="popup.js"></script>
+</body>
+</html>
