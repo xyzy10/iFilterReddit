@@ -157,6 +157,14 @@
       <button id="clear-btn" class="clear-btn">Clear All</button>
     </div>
   </div>
+  
+  <div class="toggle-container">
+    <label class="toggle-switch">
+      <input type="checkbox" id="filter-toggle">
+      <span class="slider"></span>
+    </label>
+    <span class="toggle-label">Enable Filtering</span>
+  </div>
   <div id="filter-form">
     <input type="text" id="subreddit-input" placeholder="Enter subreddit name">
     <button id="add-btn">Add</button>
@@ -281,6 +289,63 @@
 
     #clear-btn:active {
       background: #e5e5e5;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #0079d3;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(16px);
+    }
+
+    .toggle-label {
+      font-size: 14px;
+      color: #1a1a1b;
     }
   </style>
 

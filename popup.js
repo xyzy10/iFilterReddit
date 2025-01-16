@@ -4,6 +4,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const addBtn = document.getElementById('add-btn');
   const exportBtn = document.getElementById('export-btn');
   const importInput = document.getElementById('import-input');
+  const filterToggle = document.getElementById('filter-toggle');
+
+  // Initialize toggle state
+  chrome.storage.sync.get(['enabled'], (result) => {
+    const enabled = result.enabled !== undefined ? result.enabled : true;
+    filterToggle.checked = enabled;
+    updateToggleLabel(enabled);
+  });
+
+  // Toggle filter functionality
+  filterToggle.addEventListener('change', (e) => {
+    const enabled = e.target.checked;
+    chrome.storage.sync.set({ enabled }, () => {
+      updateToggleLabel(enabled);
+      // Send message to content script to update filtering state
+      chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {type: 'toggleFilter', enabled});
+      });
+    });
+  });
+
+  function updateToggleLabel(enabled) {
+    const toggleLabel = document.querySelector('.toggle-label');
+    toggleLabel.textContent = enabled ? 'Filtering Enabled' : 'Filtering Disabled';
+  }
   
   // Load saved filters
   chrome.storage.sync.get(['filters'], (result) => {
