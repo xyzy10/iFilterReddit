@@ -6,3 +6,11 @@ chrome.runtime.onInstalled.addListener(() => {
     }
   });
 });
+
+// Handle keep-alive messages from popup
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'keepAlive') {
+    // Just responding keeps the service worker alive
+    sendResponse({status: 'alive'});
+  }
+});
